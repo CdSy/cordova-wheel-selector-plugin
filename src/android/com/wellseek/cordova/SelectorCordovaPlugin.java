@@ -114,6 +114,7 @@ public class SelectorCordovaPlugin extends CordovaPlugin {
                     LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(WIDTH, HEIGHT);
                     params.gravity = Gravity.CENTER;
                     layout.setLayoutParams(params);
+                    layout.setHorizontalGravity(1);
 
                     if (views != null) {
                         for (int i = 0; i < views.size(); ++i) {
@@ -175,6 +176,7 @@ public class SelectorCordovaPlugin extends CordovaPlugin {
 
                     alert.getWindow().getAttributes().windowAnimations = android.R.style.Animation_Dialog;
                     alert.show();
+                    alert.getWindow().setLayout(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
                 }
             };
 
@@ -311,11 +313,11 @@ class PickerView {
 
 
     public LinearLayout.LayoutParams getLayoutParams() {
-        if (numPicerParams == null) {
-            numPicerParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-            numPicerParams.weight = 1;
-        }
-        return numPicerParams;
+      if (numPicerParams == null) {
+          numPicerParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+          numPicerParams.weight = 0;
+      }
+      return numPicerParams;
     }
 
     public String getDataToShow(int index) {
